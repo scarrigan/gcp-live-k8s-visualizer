@@ -72,6 +72,10 @@
   background-color: red;
 }
 
+.not_status_ready {
+  background-color: orangered;
+}
+
 .terminating {
   background-color: red;
 }

@@ -235,6 +235,17 @@ var renderGroups = function() {
 			var eltDiv = null;
       console.log(value);
       var phase = value.status.phase ? value.status.phase.toLowerCase() : '';
+
+
+      if (phase === 'running' && value.status.conditions && value.status.conditions.length > 0) {
+      	for (var i = 0; i < value.status.conditions.length; i++) {
+      		var condition = value.status.conditions[i];
+      		if (condition.type === 'Ready' && condition.status === 'False') {
+      			phase = 'not_status_ready';
+      		}      		
+      	}
+      }
+
 			if (value.type == "pod") {
         if ('deletionTimestamp' in value.metadata) {
           phase = 'terminating';
